@@ -1,0 +1,2 @@
+from scrapper.sync.make_links_for_all_products import sync_make_links_for_all_products
+from scrapper.sync.get_products_from_links import sync_get_products
