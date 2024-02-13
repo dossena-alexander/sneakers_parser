@@ -1,6 +1,6 @@
 import httpx
 
-import settings as settings
+import scrapper.settings as settings
 
 
 class Downloader():

@@ -1,11 +1,10 @@
 from bs4 import BeautifulSoup
 from bs4 import Tag
 
-from scrapper.parsers.product import Product
-from scrapper.parsers.downloader import Downloader
-from scrapper.parsers.product_parser import ProductParser
+from scrapper.lib.parsers.common.downloader import Downloader
+from scrapper.lib.parsers.product_parser import ProductParser
 
-from settings import URL    
+from scrapper.settings import URL    
 
 
 def make_link(string: str) -> str:
@@ -23,7 +22,8 @@ class ProductGridParser():
         # Находим сетку товаров
         products_grip = self.main_page.find('div', {"id": "browse-grid"})
         # Получаем все карточки товаров 
-        products_cards = products_grip.find_all('div', {"class": "css-111hzm2-GridProductTileContainer"})
+        products_cards = products_grip\
+            .find_all('div', {"class": "css-111hzm2-GridProductTileContainer"})
         return products_cards
 
     
@@ -82,7 +82,7 @@ class Parser():
         return products_names
 
 
-    def get_product(self, link: str) -> Product:
+    def get_product(self, link: str) -> dict:
         productParser = ProductParser(self.downloader, link)
         product = productParser.get_product()
 

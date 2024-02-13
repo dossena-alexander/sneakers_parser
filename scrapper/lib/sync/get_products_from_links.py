@@ -2,9 +2,9 @@ import time
 import json
 import pandas as pd
 
-from scrapper.parsers.downloader import Downloader
-from scrapper.parsers.product_parser import ProductParser
-import settings
+from scrapper.lib.parsers.common.downloader import Downloader
+from scrapper.lib.parsers.product_parser import ProductParser
+import scrapper.settings as settings
 
 
 failed_links = []

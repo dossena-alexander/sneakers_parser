@@ -1,0 +1,31 @@
+{
+    "all": [
+        {
+            "brand": "Louis Vuitton",
+            "name": "Louis Vuitton Trainer Pink SS21",
+            "date": "2021-06-17",
+            "styleId": "1A8Q9Y",
+            "condition": "New",
+            "gender": "men",
+            "img_link": "https://images.stockx.com/images/Louis-Vuitton-Trainer-Pink-SS21.jpg?fit=fill&bg=FFFFFF&w=300&h=214&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1623941451",
+            "description": "No description",
+            "sizes": {
+                "6": "0",
+                "6.5": "0",
+                "7": "0",
+                "7.5": "0",
+                "8": "0",
+                "8.5": "0",
+                "9": "0",
+                "9.5": "0",
+                "10": "0",
+                "10.5": "0",
+                "11": "0",
+                "11.5": "0",
+                "12": "0",
+                "13": "0",
+                "14": "0"
+            }
+        }
+    ]
+}

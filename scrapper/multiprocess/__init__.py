@@ -1,1 +1,0 @@
-from scrapper.multiprocess.get_products_from_links import multiprocess_get_products

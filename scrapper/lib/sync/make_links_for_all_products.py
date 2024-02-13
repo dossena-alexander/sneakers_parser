@@ -8,14 +8,13 @@
 Отлично работает с использованием одного VPN
 """
 import time
-import json
-import settings as settings
-from scrapper.parsers.downloader import Downloader
-from scrapper.parsers.s_parser import Parser
+import scrapper.settings as settings
+from scrapper.lib.parsers.common.downloader import Downloader
+from scrapper.lib.parsers.site_parser import Parser
 
 
 def save(links: set) -> None:
-    with open('all-links.txt', 'w') as f:
+    with open(settings.PATH.all_links, 'w') as f:
         for link in links:
             f.writelines(link)
             f.writelines('\n')
@@ -39,7 +38,7 @@ def prepare():
     for filter in settings.Filters.all:
         print(f'Текущий фильтр -- {filter}')
         for page_number in range(1, 25+1):
-            time.sleep(1)
+            time.sleep(5)
             print(f'Сбор ссылок на странице: {page_number}')
             try:
                 page_links = parser.get_links_from_page(

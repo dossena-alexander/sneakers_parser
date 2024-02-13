@@ -1,14 +1,19 @@
 URL = 'https://stockx.com'
 
-TIME_TO_SLEEP = 20
+TIME_TO_SLEEP = 30
+
+
+
+
 
 class PATH():
     scrapped = 'Data/scrapped'
-    links = 'Data/links'
-    proxy = 'Data/proxy'
+    all_links = 'Data/links/All-links.txt'
 
-    all_links = 'Data/links/all-links.txt'
-    links_sets = 'Data/links/links-sets'
+# WINDOWS PATH's / Uncomment this if windows
+# class PATH():
+#     scrapped = 'Data\scrapped'
+#     all_links = "Data\links\All-links.txt"
 
 
 class Filters():
@@ -63,10 +68,3 @@ HEADERS = [
      "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
     }
 ]
-
-
-# with open('proxies.txt', 'r') as file:
-#     lines = [line.strip() for line in file]
-
-# PROXIES = lines
-

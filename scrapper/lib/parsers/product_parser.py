@@ -1,8 +1,7 @@
 import json
 from bs4 import BeautifulSoup
 
-from scrapper.parsers.downloader import Downloader
-from scrapper.parsers.product import Product
+from scrapper.lib.parsers.common.downloader import Downloader
 
 
 class ProductParser():
@@ -42,7 +41,7 @@ class ProductParser():
         return json.loads(str(script_json))
 
 
-    def get_product(self) -> Product:
+    def get_product(self) -> dict:
         json = self._get_script_json()
         product = json['props']['pageProps']['req']['appContext']['states']['query']['value']['queries'][2]['state']['data']['product']
         soup = self._get_soup()
