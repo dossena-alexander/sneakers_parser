@@ -1,5 +1,5 @@
 URL = 'https://stockx.com'
-
+CATEGORY = 'sneakers'
 TIME_TO_SLEEP = 30
 
 

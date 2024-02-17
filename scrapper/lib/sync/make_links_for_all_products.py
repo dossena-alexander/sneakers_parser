@@ -30,7 +30,7 @@ def prepare():
     parser = Parser(
         downloader=downloader,
         url=settings.URL, 
-        category='sneakers')
+        category=settings.CATEGORY)
 
     page_links = []
     links_set = list()
