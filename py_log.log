@@ -1,0 +1,21 @@
+INFO:root:Обработка https://stockx.com/under-armour-curry-11-dub-nation
+INFO:root:Скачивание
+INFO:root:Скачивание завершено
+INFO:root:Парсинг
+INFO:httpx:HTTP Request: GET https://stockx.com/under-armour-curry-11-dub-nation "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://stockx.com/under-armour-curry-11-dub-nation "HTTP/1.1 200 OK"
+INFO:root:Парсинг завершен
+INFO:root:Обработка https://stockx.com/ugg-tasman-ii-slipper-chesnut-kids
+INFO:root:Скачивание
+INFO:root:Скачивание завершено
+INFO:root:Парсинг
+INFO:httpx:HTTP Request: GET https://stockx.com/ugg-tasman-ii-slipper-chesnut-kids "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://stockx.com/ugg-tasman-ii-slipper-chesnut-kids "HTTP/1.1 200 OK"
+INFO:root:Парсинг завершен
+INFO:root:Обработка https://stockx.com/crocs-classic-clog-justin-bieber-drew-house-lavender
+INFO:root:Скачивание
+INFO:root:Скачивание завершено
+INFO:root:Парсинг
+INFO:httpx:HTTP Request: GET https://stockx.com/crocs-classic-clog-justin-bieber-drew-house-lavender "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://stockx.com/crocs-classic-clog-justin-bieber-drew-house-lavender "HTTP/1.1 200 OK"
+INFO:root:Парсинг завершен

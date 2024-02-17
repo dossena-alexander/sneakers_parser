@@ -106,7 +106,7 @@ def save(d):
 def sync_get_products():
     downloader = Downloader(headers=settings.HEADERS[0])
     links = get_links()
-    for link in links[1000:1002]:
+    for link in links[:10]:
         print(f'Обработка {link}')
         logging.info(f'Обработка {link}')
         try:

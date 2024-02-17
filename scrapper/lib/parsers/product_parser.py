@@ -151,7 +151,7 @@ class ProductParser():
             variable['variations'].append(
                 {
                     'id': 0,
-                    'Тип': 'variable',
+                    'Тип': 'variation',
                     'Артикул': styleId,
                     'Имя': title,
                     'Опубликован': '',
