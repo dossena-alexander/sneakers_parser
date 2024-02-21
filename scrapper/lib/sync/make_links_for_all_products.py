@@ -38,7 +38,6 @@ def prepare():
     for filter in settings.Filters.all:
         print(f'Текущий фильтр -- {filter}')
         for page_number in range(1, 25+1):
-            time.sleep(5)
             print(f'Сбор ссылок на странице: {page_number}')
             try:
                 page_links = parser.get_links_from_page(
@@ -52,6 +51,7 @@ def prepare():
                 print(e)
                 break
             print(f'завершен успешно')
+            time.sleep(10)
     print(links_set)
 
 
