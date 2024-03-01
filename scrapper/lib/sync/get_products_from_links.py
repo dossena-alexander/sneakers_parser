@@ -106,7 +106,12 @@ def save(d):
 def sync_get_products():
     downloader = Downloader(headers=settings.HEADERS[0])
     links = get_links()
-    for link in links[:10]:
+    limit = settings.PARSER_LIMIT
+    if limit is None:
+        arange = links
+    else:
+        arange = links[:limit]
+    for link in arange:
         print(f'Обработка {link}')
         logging.info(f'Обработка {link}')
         try:
