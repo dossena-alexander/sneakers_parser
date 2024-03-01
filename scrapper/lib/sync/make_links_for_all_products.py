@@ -26,7 +26,7 @@ def prepare():
     сбор ссылок на все все товары
     """
     print('начинаем собирать ссылки на товары')
-    downloader = Downloader()
+    downloader = Downloader(headers=settings.HEADERS[0])
     parser = Parser(
         downloader=downloader,
         url=settings.URL, 
@@ -51,7 +51,7 @@ def prepare():
                 print(e)
                 break
             print(f'завершен успешно')
-            time.sleep(10)
+            time.sleep(settings.LNK_TIME_TO_SLEEP)
     print(links_set)
 
 

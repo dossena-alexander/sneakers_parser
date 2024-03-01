@@ -5,6 +5,7 @@ from scrapper.lib.parsers.common.downloader import Downloader
 from scrapper.lib.parsers.product_parser import ProductParser
 
 from scrapper.settings import URL    
+from scrapper.settings import Filters
 
 
 def make_link(string: str) -> str:
@@ -92,7 +93,8 @@ class Parser():
     def _get_links_from_page(self, 
                              url: str,
                              page_number: int = 1) -> list[str]:
-        url += '?page='+str(page_number)
+        if page_number != 1:
+            url += '?page='+str(page_number)
         products_names = self._get_products_names(url)
         links = [make_link(name) for name in products_names]
         return links
@@ -102,7 +104,7 @@ class Parser():
                             page_number: int = 1,
                             filter: str = None) -> list[str]:
         url = self.parse_object
-        if filter is not None:
+        if filter is not None and filter != Filters.featured:
             url += '/'+filter
         links = self._get_links_from_page(
             url=url, page_number=page_number

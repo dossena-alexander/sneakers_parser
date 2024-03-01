@@ -123,7 +123,7 @@ def sync_get_products():
             print(e)
             print('Продукт не был получен. Ссылка записана в файл Data/scrapped/failed-links.txt')
             failed_links.append(link)
-        time.sleep(settings.TIME_TO_SLEEP)
+        time.sleep(settings.PDT_TIME_TO_SLEEP)
 
     save(products)
 
