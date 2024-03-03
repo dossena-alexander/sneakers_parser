@@ -1,26 +1,27 @@
+import progress
 import logging
 import time
-import json
 import pandas as pd
-import csv
+from progress.bar import IncrementalBar
+import os
 
+import scrapper.settings as settings
 from scrapper.lib.parsers.common.downloader import Downloader
 from scrapper.lib.parsers.product_parser import ProductParser
-import scrapper.settings as settings
+from scrapper.lib.sync.table import write_variable, write_headers
+
+
+def sleep_time():
+    mylist = [i for i in range(1, settings.PDT_TIME_TO_SLEEP+1)]
+    bar = IncrementalBar('Ожидание', max=len(mylist))
+    for item in mylist:
+        bar.next()
+        time.sleep(1)
+    bar.finish()
 
 
 failed_links = []
 products = {'all': []}
-
-class CatchEnd(object):
-    def __enter__(self):
-        pass
-
-    def __exit__(self, type, value, trace):
-        print("Заканчиваю работу...")
-        print('Сохраняю продукты')
-        save(products)
-        print('Продукты сохранены')
 
 
 def get_links() -> list[str]:
@@ -30,74 +31,6 @@ def get_links() -> list[str]:
     return links
 
 
-def save(d):
-    with open(f'{settings.PATH.scrapped}/products.json', 'w', encoding='utf-8') as f:
-        json.dump(d, f, indent=4, ensure_ascii=False)
-
-    with open(f'{settings.PATH.scrapped}/products-table.csv', 'w', encoding='utf-8') as f:
-        writer = csv.DictWriter(f, fieldnames=\
-            ['id', 
-             'Тип',
-             'Артикул', 
-             'Имя',
-             'Опубликован', 
-             'Рекомендуемый?',
-             'Видимость в каталоге', 
-             'Краткое описание', 
-             'Описание', 
-             'Дата начала действия скидки',
-             'Дата окончания действия скидки',
-             'Статус налога',
-             'Налоговый класс',
-             'Наличие',
-             'Запасы',
-             'Величина малых запасов',
-             'Возможен ли предзаказ?',
-             'Продано индивидуально?',
-             'Вес (кг)',
-             'Длина (см)',
-             'Ширина (см)', 
-             'Высота (см)', 
-             'Разрешить отзывы от клиентов?',
-             'Примечание к покупке',
-             'Акционная цена', 
-             'Базовая цена', 
-             'Категории', 
-             'Метки',
-             'Класс доставки', 
-             'Изображения', 
-             'Лимит загрузок',
-             'Дней срока загрузки', 
-             'Родительский', 
-             'Сгруппированные товары', 
-             'Апсэлы', 
-             'Кросселы', 
-             'Мета: woovina_disable_breadcrumbs', 
-             'Текст кнопки', 
-             'Позиция',
-             'Название атрибута 1', 
-             'Значения атрибутов 1',
-             'Видимость атрибута 1', 
-             'Глобальный атрибут 1', 
-             'Название атрибута 2',
-             'Значения атрибутов 2',
-             'Видимость атрибута 2',
-             'Глобальный атрибут 2',
-             'Название атрибута 3', 
-             'Значения атрибутов 3',
-             'Видимость атрибута 3', 
-             'Глобальный атрибут 3',
-             'Название атрибута 4',
-             'Значения атрибутов 4',
-             'Видимость атрибута 4', 
-             'Глобальный атрибут 4'])
-        writer.writeheader()
-        for product in d['all']:
-            variations = product.pop('variations')
-            writer.writerow(product)
-            writer.writerows(variations)
-
-
 def save_failed_link(link):
     with open(f'{settings.PATH.scrapped}/failed-links.txt', 'a') as f:
         f.write(link)
@@ -105,6 +38,7 @@ def save_failed_link(link):
 
 
 def sync_get_products():
+    write_headers()
     downloader = Downloader(headers=settings.HEADERS[0])
     links = get_links()
     limit = settings.PARSER_LIMIT
@@ -112,34 +46,34 @@ def sync_get_products():
         arange = links
     else:
         arange = links[:limit]
+    bar = IncrementalBar('Парсинг ссылок', max=len(arange))
     for link in arange:
-        print(f'Обработка {link}')
+        bar.next()
+        print(f'\nОбработка {link}')
         logging.info(f'Обработка {link}')
         try:
+            print('Скачивание')
             logging.info('Скачивание')
             pp = ProductParser(downloader, link)
+            print('Скачивание завершено')
             logging.info('Скачивание завершено')
             logging.info('Парсинг')
+            print('Парсинг')
             variable = pp.get_product()
             logging.info('Парсинг завершен')
-            products['all'].append(variable)
-            print(f'Продукт получен')
+            print('Парсинг завершен')
+            write_variable(variable)
+            print('Variable записан')
+
         except Exception as e:
             logging.error(e)
             print(e)
             print('Продукт не был получен. Ссылка записана в файл Data/scrapped/failed-links.txt')
             save_failed_link(link)
-        time.sleep(settings.PDT_TIME_TO_SLEEP)
-
-    save(products)
+        sleep_time()
+        os.system('cls' if os.name == 'nt' else 'clear')
+    bar.finish
 
 
 def parse():
-    # with CatchEnd():
-        # sync_get_products()
-
-    sync_get_products()
-
-
-if __name__ == "__main__":
     sync_get_products()

@@ -1,4 +1,3 @@
-import logging
 import json
 from bs4 import BeautifulSoup
 
@@ -144,7 +143,6 @@ class ProductParser():
                 amount = ''
             variable['Значения атрибутов 1'].append(size)
             variable['sizes'][size] = amount
-
         variable['Значения атрибутов 1'] = ','.join([f'US{size}' for size in variable['Значения атрибутов 1']])
 
         for size, amount in variable['sizes'].items():
