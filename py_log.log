@@ -1,21 +1,14 @@
-INFO:root:Обработка https://stockx.com/under-armour-curry-11-dub-nation
+INFO:root:Обработка https://stockx.com/louis-vuitton-trainer-pink-ss21
 INFO:root:Скачивание
 INFO:root:Скачивание завершено
 INFO:root:Парсинг
-INFO:httpx:HTTP Request: GET https://stockx.com/under-armour-curry-11-dub-nation "HTTP/1.1 200 OK"
-INFO:httpx:HTTP Request: GET https://stockx.com/under-armour-curry-11-dub-nation "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://stockx.com/louis-vuitton-trainer-pink-ss21 "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://stockx.com/louis-vuitton-trainer-pink-ss21 "HTTP/1.1 200 OK"
 INFO:root:Парсинг завершен
-INFO:root:Обработка https://stockx.com/ugg-tasman-ii-slipper-chesnut-kids
+INFO:root:Обработка https://stockx.com/ugg-classic-ultra-mini-platform-summer-sky-w
 INFO:root:Скачивание
 INFO:root:Скачивание завершено
 INFO:root:Парсинг
-INFO:httpx:HTTP Request: GET https://stockx.com/ugg-tasman-ii-slipper-chesnut-kids "HTTP/1.1 200 OK"
-INFO:httpx:HTTP Request: GET https://stockx.com/ugg-tasman-ii-slipper-chesnut-kids "HTTP/1.1 200 OK"
-INFO:root:Парсинг завершен
-INFO:root:Обработка https://stockx.com/crocs-classic-clog-justin-bieber-drew-house-lavender
-INFO:root:Скачивание
-INFO:root:Скачивание завершено
-INFO:root:Парсинг
-INFO:httpx:HTTP Request: GET https://stockx.com/crocs-classic-clog-justin-bieber-drew-house-lavender "HTTP/1.1 200 OK"
-INFO:httpx:HTTP Request: GET https://stockx.com/crocs-classic-clog-justin-bieber-drew-house-lavender "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://stockx.com/ugg-classic-ultra-mini-platform-summer-sky-w "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://stockx.com/ugg-classic-ultra-mini-platform-summer-sky-w "HTTP/1.1 200 OK"
 INFO:root:Парсинг завершен

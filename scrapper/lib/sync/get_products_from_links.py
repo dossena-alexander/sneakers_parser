@@ -97,10 +97,11 @@ def save(d):
             writer.writerow(product)
             writer.writerows(variations)
 
-    with open(f'{settings.PATH.scrapped}/failed-links.txt', 'w') as f:
-        for line in failed_links:
-            f.write(line)
-            f.write('\n')
+
+def save_failed_link(link):
+    with open(f'{settings.PATH.scrapped}/failed-links.txt', 'a') as f:
+        f.write(link)
+        f.write('\n')
 
 
 def sync_get_products():
@@ -127,7 +128,7 @@ def sync_get_products():
             logging.error(e)
             print(e)
             print('Продукт не был получен. Ссылка записана в файл Data/scrapped/failed-links.txt')
-            failed_links.append(link)
+            save_failed_link(link)
         time.sleep(settings.PDT_TIME_TO_SLEEP)
 
     save(products)
