@@ -1,6 +1,6 @@
 URL = 'https://stockx.com'
 CATEGORY = 'sneakers'
-PDT_TIME_TO_SLEEP = 30
+PDT_TIME_TO_SLEEP = 40
 LNK_TIME_TO_SLEEP = 10
 PARSER_LIMIT = 10
 # ДЛЯ ОТКЛЮЧЕНИЯ ЛИМИТА ПАРСИНГА ТОВАРОВ РАСКОММЕНТИРОВАТЬ СТРОКУ НИЖЕ
