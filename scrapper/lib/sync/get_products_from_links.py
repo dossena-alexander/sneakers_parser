@@ -39,7 +39,6 @@ def save_failed_link(link):
 
 def sync_get_products():
     write_headers()
-    downloader = Downloader(headers=settings.HEADERS[0])
     links = get_links()
     limit = settings.PARSER_LIMIT
     if limit is None:
@@ -47,7 +46,28 @@ def sync_get_products():
     else:
         arange = links[:limit]
     bar = IncrementalBar('Парсинг ссылок', max=len(arange))
-    for link in arange:
+    for c, link in enumerate(arange):
+        if c >= 0 and c < 300:
+            print(f'Меняю Headers -- {0}')
+            downloader = Downloader(headers=settings.HEADERS[0])
+        elif c >= 300 and c < 600:
+            print(f'Меняю Headers -- {1}')
+            downloader = Downloader(headers=settings.HEADERS[1])
+        elif c >= 600 and c < 1200:
+            print(f'Меняю Headers -- {2}')
+            downloader = Downloader(headers=settings.HEADERS[2])
+        elif c >= 1200 and c < 1600:
+            print(f'Меняю Headers -- {3}')
+            downloader = Downloader(headers=settings.HEADERS[3])
+        elif c >= 1600 and c < 2000:
+            print(f'Меняю Headers -- {4}')
+            downloader = Downloader(headers=settings.HEADERS[4])
+        elif c >= 2000 and c < 2300:
+            print(f'Меняю Headers -- {5}')
+            downloader = Downloader(headers=settings.HEADERS[5])
+        else:
+            print(f'Меняю Headers -- {6}')
+            downloader = Downloader(headers=settings.HEADERS[6])
         bar.next()
         print(f'\nОбработка {link}')
         logging.info(f'Обработка {link}')
