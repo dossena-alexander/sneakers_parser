@@ -8,7 +8,7 @@ import os
 import scrapper.settings as settings
 from scrapper.lib.parsers.common.downloader import Downloader
 from scrapper.lib.parsers.product_parser import ProductParser
-from scrapper.lib.sync.table import write_variable, write_headers
+from scrapper.lib.sync.products_table import write_variable, write_headers
 
 
 def sleep_time():
