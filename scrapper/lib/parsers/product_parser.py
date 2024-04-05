@@ -46,7 +46,7 @@ class ProductParser():
         Возращает продукт (variable) и его варианты (variation)
         """
         json = self._get_script_json()
-        product = json['props']['pageProps']['req']['appContext']['states']['query']['value']['queries'][2]['state']['data']['product']
+        product = json['props']['pageProps']['req']['appContext']['states']['query']['value']['queries'][3]['state']['data']['product']
         soup = self._get_soup()
         div = soup.find('div', {'data-component': 'ProductDescription'})
         if div is None:
@@ -56,14 +56,14 @@ class ProductParser():
 
         brand = product['brand']
         title = product['title']
+        images360 = product['media']['all360Images']
         try:
             date = product['Onytraits'][3]['value']
         except KeyError:
             date = product['traits'][3]['value']
         styleId = product['styleId']
-        condition = product['condition']
         gender = product['gender']
-        img_link = product['media']['smallImageUrl']
+        img_link = product['media']['imageUrl']
         variants = product['variants']
 
         if gender == 'men':
@@ -104,6 +104,7 @@ class ProductParser():
             'Метки': '',
             'Класс доставки': '',
             'Изображения': img_link,
+            '360 вид': images360,
             'Лимит загрузок': '',
             'Дней срока загрузки': '',
             'Родительский': '',
@@ -178,6 +179,7 @@ class ProductParser():
                     'Метки': '',
                     'Класс доставки': '',
                     'Изображения': img_link,
+                    '360 вид': images360,
                     'Лимит загрузок': '',
                     'Дней срока загрузки': '',
                     'Родительский': '',

@@ -1,8 +1,7 @@
-import progress
+from tqdm import tqdm
 import logging
 import time
 import pandas as pd
-from progress.bar import IncrementalBar
 import os
 
 import scrapper.settings as settings
@@ -13,11 +12,8 @@ from scrapper.lib.sync.products_table import write_variable, write_headers
 
 def sleep_time():
     mylist = [i for i in range(1, settings.PDT_TIME_TO_SLEEP+1)]
-    bar = IncrementalBar('Ожидание', max=len(mylist))
-    for item in mylist:
-        bar.next()
+    for item in tqdm(mylist, 'Ожидание'):
         time.sleep(1)
-    bar.finish()
 
 
 failed_links = []
@@ -38,6 +34,14 @@ def save_failed_link(link):
 
 
 def sync_get_products():
+    # x = 'https://stockx.com/air-jordan-4-retro-bred-reimagined'
+    # downloader = Downloader(headers=settings.HEADERS[0])
+    # pp = ProductParser(downloader, x)
+    # with open('some.html', 'w') as f:
+    #     f.write(pp._get_html())
+    # variable = pp.get_product()
+    # print(variable)
+    # return
     write_headers()
     links = get_links()
     limit = settings.PARSER_LIMIT
@@ -45,8 +49,7 @@ def sync_get_products():
         arange = links
     else:
         arange = links[:limit]
-    bar = IncrementalBar('Парсинг ссылок', max=len(arange))
-    for c, link in enumerate(arange):
+    for c, link in enumerate(tqdm(arange, 'Парсинг ссылок')):
         if c >= 0 and c < 300:
             print(f'Меняю Headers -- {0}')
             downloader = Downloader(headers=settings.HEADERS[0])
@@ -68,7 +71,6 @@ def sync_get_products():
         else:
             print(f'Меняю Headers -- {6}')
             downloader = Downloader(headers=settings.HEADERS[6])
-        bar.next()
         print(f'\nОбработка {link}')
         logging.info(f'Обработка {link}')
         try:
@@ -86,13 +88,12 @@ def sync_get_products():
             print('Variable записан')
 
         except Exception as e:
-            logging.error(e)
+            logging.info(e)
             print(e)
             print('Продукт не был получен. Ссылка записана в файл Data/scrapped/failed-links.txt')
             save_failed_link(link)
         sleep_time()
         os.system('cls' if os.name == 'nt' else 'clear')
-    bar.finish
 
 
 def parse():
