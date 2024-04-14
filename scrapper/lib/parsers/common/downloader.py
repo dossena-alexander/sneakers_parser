@@ -33,3 +33,7 @@ class Downloader():
     def get_html(self, url: str):
         response = self.make_response(url)
         return response.text
+    
+    def get_img(self, url: str):
+        response = self.make_response(url)
+        return response.content

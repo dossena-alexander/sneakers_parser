@@ -33,6 +33,19 @@ def save_failed_link(link):
         f.write('\n')
 
 
+def save_img(downloader: Downloader, link, name: str):
+    img_source = downloader.get_img(link)
+    with open(f'{settings.PATH.scrapped}/imgs/{name}', 'wb') as f:
+            f.write(img_source)
+
+
+def make_name_var(variable: dict):
+    full_name = variable['Имя']
+    name = full_name.split(' ')
+    name = ''.join([char[0] for char in name])
+    return name
+
+
 def sync_get_products():
     # x = 'https://stockx.com/air-jordan-4-retro-bred-reimagined'
     # downloader = Downloader(headers=settings.HEADERS[0])
@@ -79,13 +92,27 @@ def sync_get_products():
             pp = ProductParser(downloader, link)
             print('Скачивание завершено')
             logging.info('Скачивание завершено')
+
             logging.info('Парсинг')
             print('Парсинг')
             variable = pp.get_product()
             logging.info('Парсинг завершен')
             print('Парсинг завершен')
+            
             write_variable(variable)
             print('Variable записан')
+
+            print('Скачивание preview')
+            name = make_name_var(variable)
+            preview = variable['Изображения']
+            img_360 = variable['360 вид']
+            save_img(downloader, preview, f'prw_{name}.jpg')
+            print('Скачивание preview завершено')
+
+            print('Скачивание 360')
+            for c, img in tqdm(enumerate(img_360), 'Скачивание 360 изображений'):
+                save_img(downloader, img, f'360_{name}img_{c}.jpg')
+            print('Скачивание 360 завершено')
 
         except Exception as e:
             logging.info(e)
